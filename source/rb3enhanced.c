@@ -396,8 +396,10 @@ void InitialiseFunctions()
     POKE_B(&BinstreamRead, PORT_BINSTREAMREAD);
     POKE_B(&BinstreamWriteEndian, PORT_BINSTREAMWRITEENDIAN);
     POKE_B(&BinstreamReadEndian, PORT_BINSTREAMREADENDIAN);
+#ifndef RB3E_WII_BANK8
 	POKE_B(&BandCharDescNewObject, PORT_BANDCHARDESC_NEWOBJECT);
     POKE_B(&GetPrefabPortraitPath, PORT_GETPREFABPORTRAITPATH);
+#endif
 #ifdef RB3E_XBOX
     POKE_B(&DataArrayExecute, PORT_DATAARRAYEXECUTE);
 #endif
