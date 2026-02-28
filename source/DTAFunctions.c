@@ -13,6 +13,7 @@
 #include "rb3/Data.h"
 #include "rb3/SongMetadata.h"
 #include "rb3/BandSongMgr.h"
+#include "rb3/BandUserMgr.h"
 #include "rb3enhanced.h"
 #include "net.h"
 #include "version.h"
@@ -352,6 +353,39 @@ DataNode *DTALocalIP(DataNode *node, DataArray *args)
     }
 }
 
+DataNode *DTASetAutoVocalsDifficulty(DataNode *node, DataArray *args)
+{
+    // TODO iff (TheGameConfig->GetConfigList()->GetAutoVocals()) { ... }
+    // https://github.com/DarkRTA/rb3/blob/a51fcae3cfaa4750bc457f9dcec86f6b69bffce3/src/band3/game/GameConfig.cpp#L188
+    Difficulty difficulty;
+    BandUser *user;
+    DataNode *firstArg = DataNodeEvaluate(&args->mNodes->n[1]);
+    switch (firstArg->type)
+    {
+    case INT_VALUE:
+        difficulty = (Difficulty)firstArg->value.intVal;
+        user = GetNullUser(*(int *)PORT_THEBANDUSERMGR);
+        user->SetDifficulty(difficulty);
+        ChangeDifficulty(*(int *)PORT_THEGAMECONFIG, user, difficulty);
+        break;
+    default:
+        RB3E_MSG("Invalid type %i for rb3e_set_auto_vocals_difficulty", firstArg->type);
+        break;
+    }
+    return node;
+}
+
+DataNode *DTAGetAutoVocalsStats(DataNode *node, DataArray *args)
+{
+    // TODO iff (TheGameConfig->GetConfigList()->GetAutoVocals()) { ... }
+    BandUser *user = GetNullUser(*(int *)PORT_THEBANDUSERMGR);
+    const Stats &stats = user->GetPlayer()->GetStats();
+    // TODO BJH I assume this would be an object, not just a single score
+    node->type = INT_VALUE;
+    node->value.intVal = stats.GetEndGameScore();
+    return node;
+}
+
 #ifdef RB3E_XBOX
 // this function is inlined on the Xbox version, so we re-create it
 void DataRegisterFunc(Symbol name, DTAFunction_t func)
@@ -382,5 +416,7 @@ void AddDTAFunctions()
     DataRegisterFunc(globalSymbols.rb3e_get_genre, DTAGetGenre);
     DataRegisterFunc(globalSymbols.rb3e_delete_songcache, DTADeleteSongCache);
     DataRegisterFunc(globalSymbols.rb3e_local_ip, DTALocalIP);
+    DataRegisterFunc(globalSymbols.rb3e_set_auto_vocals_difficulty, DTASetAutoVocalsDifficulty);
+    DataRegisterFunc(globalSymbols.rb3e_get_auto_vocals_stats, DTASetAutoVocalsStats);
     RB3E_MSG("Added DTA functions!", NULL);
 }

@@ -50,6 +50,8 @@ void InitGlobalSymbols()
     SymbolConstruct(&globalSymbols.rb3e_get_genre, "rb3e_get_genre");
     SymbolConstruct(&globalSymbols.rb3e_delete_songcache, "rb3e_delete_songcache");
     SymbolConstruct(&globalSymbols.rb3e_local_ip, "rb3e_local_ip");
+    SymbolConstruct(&globalSymbols.rb3e_set_auto_vocals_difficulty, "rb3e_set_auto_vocals_difficulty");
+    SymbolConstruct(&globalSymbols.rb3e_get_auto_vocals_stats, "rb3e_get_auto_vocals_stats");
 
     SymbolConstruct(&globalSymbols.blackBackground, "mod_black_background");
     SymbolConstruct(&globalSymbols.colorShuffle, "mod_color_shuffle");

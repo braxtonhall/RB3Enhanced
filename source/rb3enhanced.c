@@ -370,6 +370,7 @@ void InitialiseFunctions()
     POKE_B(&SymbolConstruct, PORT_SYMBOL_CT);
     POKE_B(&ModifierActive, PORT_MODIFIERMGR_ACTIVE);
     POKE_B(&GetBandUserFromSlot, PORT_GETBANDUSERFROMSLOT);
+    POKE_B(&GetNullUser, PORT_GETNULLUSER);
 #ifndef RB3E_WII_BANK8
     POKE_B(&HmxFactoryFuncAt, PORT_HMXFACTORYFUNCAT);
     // TODO(Emma): port to bank8

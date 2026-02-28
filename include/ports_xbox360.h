@@ -112,6 +112,7 @@
 #define PORT_GAMEGETACTIVEPLAYER 0x82678e88          // Game::GetActivePlayer
 #define PORT_GETBANDUSERS 0x82683b78                 // BandUserMgr::GetBandUsers
 #define PORT_GETBANDUSERFROMSLOT 0x82682b60          // BandUserMgr::GetBandUserFromSlot
+#define PORT_GETNULLUSER // TODO BJH                 // BandUserMgr::GetNullUser
 #define PORT_GETSONGID 0x827a87f0                    // GetSongID, function used when adding songs to BandSongMgr
 #define PORT_SONGMGRGETRANKEDSONGS 0x82577340        // BandSongMgr::GetRankedSongs(?) - not sure on the real name of the function
 #define PORT_BUILDINSTRUMENTSELECTION 0x82668c70     // BuildInstrumentSelectionList(?) - actual name not known
@@ -176,6 +177,7 @@
 #define PORT_THESONGSORTMGR 0x82dfee5c      // pointer to TheSongSortMgr
 #define PORT_THEMUSICLIBRARY 0x82dfd3a8     // pointer to TheMusicLibrary
 #define PORT_THEGAME 0x82e02128             // pointer to TheGame (you lost)
+#define PORT_THEGAMECONFIG // TODO BJH      // pointer to TheGameConfig
 #define PORT_OBJECTDIRMAINDIR 0x82e054b8    // ObjectDir::sMainDir
 #define PORT_MESH_GREV 0x82cc2638           // address of RndMesh::gRev
 #define PORT_DXRND 0x82e04b38               // address of TheDxRnd

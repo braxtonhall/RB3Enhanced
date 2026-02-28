@@ -75,6 +75,7 @@
 #define PORT_FILESTREAM_CT 0x8034c9f8            // FileStream::__ct (the one that takes a char * path instead of a File object)
 #define PORT_CHUNKSTREAM_CT 0x8034aa90           // ChunkStream::__ct
 #define PORT_GETBANDUSERFROMSLOT 0x8010021c      // BandUserMgr::GetBandUserFromSlot
+#define PORT_GETNULLUSER // TODO BJH             // BandUserMgr::GetNullUser
 #define PORT_GETBANDUSERS 0x80100558             // BandUserMgr::GetBandUsers
 #define PORT_GETSONGSHORTNAME 0x80224edc         // MetaPerformer::GetSongShortname(?) - actual name not known
 #define PORT_GETMETADATA 0x80515510              // BandSongMgr::Data (function renamed from the original name to avoid any confusion with Data.h)
@@ -129,6 +130,7 @@
 #define PORT_THEMETAPERFORMER 0x808fd6f8    // address of TheMetaPerformer
 #define PORT_THEBANDUSERMGR 0x808f9350      // pointer to TheBandUserMgr
 #define PORT_THEGAME 0x808f9758             // pointer to TheGame (you lost)
+#define PORT_THEGAMECONFIG // TODO BJH      // pointer to TheGameConfig
 #define PORT_OBJECTDIRMAINDIR 0x8091b1e8    // ObjectDir::sMainDir
 #define PORT_GPREFABS 0x809862b8            // gPrefabs (directory for prefabs)
 // string pointers

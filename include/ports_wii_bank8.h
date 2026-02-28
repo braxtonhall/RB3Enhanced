@@ -77,6 +77,7 @@
 #define PORT_FILESTREAM_CT 0x80494fd0            // FileStream::__ct (the one that takes a char * path instead of a File object)
 #define PORT_CHUNKSTREAM_CT 0x804929a0           // ChunkStream::__ct
 #define PORT_GETBANDUSERFROMSLOT 0x80168010      // BandUserMgr::GetUserFromSlot
+#define PORT_GETNULLUSER // TODO BJH             // BandUserMgr::GetNullUser
 #define PORT_GETBANDUSERS 0x801683e0             // BandUserMgr::GetBandUsers
 #define PORT_GETSONGSHORTNAME 0x802f5dd0         // MetaPerformer::GetSongSymbol
 #define PORT_GETMETADATA 0x80271de0              // BandSongMgr::Data (function renamed from the original name to avoid any confusion with Data.h)
@@ -126,6 +127,7 @@
 #define PORT_THEMETAPERFORMER 0x80c90470    // address of TheMetaPerformer / MetaPerformer::sMetaPerformer
 #define PORT_THEBANDUSERMGR 0x80c8e9b8      // pointer to TheBandUserMgr
 #define PORT_THEGAME 0x80c8eb18             // pointer to TheGame (you lost)
+#define PORT_THEGAMECONFIG // TODO BJH      // pointer to TheGameConfig
 #define PORT_OBJECTDIRMAINDIR 0x80cac538    // ObjectDir::sMainDir
 // string pointers
 #define PORT_NASWII_AC_URL 0x80c77fdc

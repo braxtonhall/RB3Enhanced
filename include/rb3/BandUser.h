@@ -45,4 +45,9 @@ typedef struct _BandUser
     int unknown_0x20;
 } BandUser;
 
+typedef struct _NullLocalBandUser
+{
+    // TODO
+} NullLocalBandUser;
+
 #endif // _BANDUSER_H
