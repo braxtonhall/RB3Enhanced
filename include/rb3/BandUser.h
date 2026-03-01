@@ -45,4 +45,7 @@ typedef struct _BandUser
     int unknown_0x20;
 } BandUser;
 
+// sets the BandUser's difficulty
+extern void SetDifficulty(int thisBandUser, Difficulty difficulty);
+
 #endif // _BANDUSER_H

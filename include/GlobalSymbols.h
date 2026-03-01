@@ -34,6 +34,8 @@ typedef struct _GlobalSymbols
     Symbol rb3e_get_genre;
     Symbol rb3e_delete_songcache;
     Symbol rb3e_local_ip;
+    Symbol rb3e_set_auto_vocals_difficulty;
+    Symbol rb3e_get_auto_vocals_stats;
 
     // modifiers
     Symbol forceHopos;

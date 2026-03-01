@@ -72,6 +72,7 @@
 #define PORT_GAMEGETACTIVEPLAYER 0x0017BB48      // Game::GetActivePlayer
 #define PORT_GETBANDUSERS 0x00178E00             // BandUserMgr::GetBandUsers
 #define PORT_GETBANDUSERFROMSLOT 0x00176FA0      // BandUserMgr::GetBandUserFromSlot
+#define PORT_GETNULLUSER // TODO BJH             // BandUserMgr::GetNullUser
 #define PORT_GETSONGID 0x0063F7A8                // GetSongID, function used when adding songs to BandSongMgr
 #define PORT_SONGMGRGETRANKEDSONGS 0x002802B8    // BandSongMgr::GetRankedSongs(?) - not sure on the real name of the function
 #define PORT_BUILDINSTRUMENTSELECTION 0x003E4EC4 // BuildInstrumentSelectionList(?) - actual name not known
@@ -116,6 +117,7 @@
 // #define PORT_THESONGSORTMGR 0               // pointer to TheSongSortMgr
 // #define PORT_THEMUSICLIBRARY 0              // pointer to TheMusicLibrary
 // #define PORT_THEGAME 0                      // pointer to TheGame (you lost)
+#define PORT_THEGAMECONFIG // TODO BJH         // pointer to TheGameConfig
 // #define PORT_OBJECTDIRMAINDIR 0             // ObjectDir::sMainDir
 // ps3 usb specific hooks
 #define PORT_LDDREGISTERTAIL 0x008e4240  // the "ld r2" instruction after the final call to cellUsbdRegisterExtraLdd2

@@ -13,6 +13,9 @@
 #include "rb3/Data.h"
 #include "rb3/SongMetadata.h"
 #include "rb3/BandSongMgr.h"
+#include "rb3/BandUserMgr.h"
+#include "rb3/GameConfig.h"
+#include "rb3/PlayerTrackConfigList.h"
 #include "rb3enhanced.h"
 #include "net.h"
 #include "version.h"
@@ -33,7 +36,7 @@ DataNode *DTAGetRB3ECommit(DataNode *node, DataArray *args)
 
 DataNode *DTAGetAPIVersion(DataNode *node, DataArray *args)
 {
-    /* 
+    /*
         This API version should be incremented every time a DTA function gets
         added, has functionality modified, or removed, as well as every time a
         major feature is added/removed from RB3E or a new major version is
@@ -218,9 +221,12 @@ DataNode *DTAGetSongName(DataNode *node, DataArray *args)
     {
         SongMetadata *songmet = GetMetadata((BandSongMgr *)PORT_THESONGMGR, firstArg->value.intVal);
         RB3E_DEBUG("rb3e_get_song_name %i", firstArg->value.intVal);
-        if (songmet == NULL) {
+        if (songmet == NULL)
+        {
             RB3E_MSG("!! FAILED TO GET SONG METADATA FOR %i !!", firstArg->value.intVal);
-        } else {
+        }
+        else
+        {
             Symbol titleSym;
             SymbolConstruct(&titleSym, songmet->title.buf);
             node->value.string = titleSym.sym;
@@ -242,9 +248,12 @@ DataNode *DTAGetArtist(DataNode *node, DataArray *args)
     {
         SongMetadata *songmet = GetMetadata((BandSongMgr *)PORT_THESONGMGR, firstArg->value.intVal);
         RB3E_DEBUG("rb3e_get_artist %i", firstArg->value.intVal);
-        if (songmet == NULL) {
+        if (songmet == NULL)
+        {
             RB3E_MSG("!! FAILED TO GET SONG METADATA FOR %i !!", firstArg->value.intVal);
-        } else {
+        }
+        else
+        {
             Symbol artistSym;
             SymbolConstruct(&artistSym, songmet->artist.buf);
             node->value.string = artistSym.sym;
@@ -266,9 +275,12 @@ DataNode *DTAGetAlbum(DataNode *node, DataArray *args)
     {
         SongMetadata *songmet = GetMetadata((BandSongMgr *)PORT_THESONGMGR, firstArg->value.intVal);
         RB3E_DEBUG("rb3e_get_album %i", firstArg->value.intVal);
-        if (songmet == NULL) {
+        if (songmet == NULL)
+        {
             RB3E_MSG("!! FAILED TO GET SONG METADATA FOR %i !!", firstArg->value.intVal);
-        } else {
+        }
+        else
+        {
             Symbol albumSym;
             SymbolConstruct(&albumSym, songmet->album.buf);
             node->value.string = albumSym.sym;
@@ -290,9 +302,12 @@ DataNode *DTAGetGenre(DataNode *node, DataArray *args)
     {
         SongMetadata *songmet = GetMetadata((BandSongMgr *)PORT_THESONGMGR, firstArg->value.intVal);
         RB3E_DEBUG("rb3e_get_genre %i", firstArg->value.intVal);
-        if (songmet == NULL) {
+        if (songmet == NULL)
+        {
             RB3E_MSG("!! FAILED TO GET SONG METADATA FOR %i !!", firstArg->value.intVal);
-        } else {
+        }
+        else
+        {
             node->value.string = songmet->genre.sym;
         }
     }
@@ -312,9 +327,12 @@ DataNode *DTAGetOrigin(DataNode *node, DataArray *args)
     {
         SongMetadata *songmet = GetMetadata((BandSongMgr *)PORT_THESONGMGR, firstArg->value.intVal);
         RB3E_DEBUG("rb3e_no_origin %i", firstArg->value.intVal);
-        if (songmet == NULL) {
+        if (songmet == NULL)
+        {
             RB3E_MSG("!! FAILED TO GET SONG METADATA FOR %i !!", firstArg->value.intVal);
-        } else {
+        }
+        else
+        {
             node->value.string = songmet->gameOrigin.sym;
         }
     }
@@ -352,6 +370,57 @@ DataNode *DTALocalIP(DataNode *node, DataArray *args)
     }
 }
 
+DataNode *DTASetAutoVocalsDifficulty(DataNode *node, DataArray *args)
+{
+    Difficulty difficulty;
+    BandUser *user;
+    DataNode *firstArg;
+    int playerTrackConfigList = GetConfigList(*(int *)PORT_THEGAMECONFIG);
+    char autoVox = GetAutoVocals(playerTrackConfigList);
+
+    if (autoVox)
+    {
+        firstArg = DataNodeEvaluate(&args->mNodes->n[1]);
+        switch (firstArg->type)
+        {
+        case INT_VALUE:
+            difficulty = (Difficulty)firstArg->value.intVal;
+            user = GetNullUser(*(int *)PORT_THEBANDUSERMGR);
+            // This should automatically change the player's difficulty if it is present
+            SetDifficulty(user, difficulty);
+            // TODO need to update config if the Band hasn't been constructed yet
+            //  playerTrackConfigList->UpdateConfig(GetUserGuid(), GetTrackType(), GetDifficulty(), -1, false);
+            break;
+        default:
+            RB3E_MSG("Invalid type %i for rb3e_set_auto_vocals_difficulty", firstArg->type);
+            break;
+        }
+    }
+    return node;
+}
+
+DataNode *DTAGetAutoVocalsStats(DataNode *node, DataArray *args)
+{
+    //    BandUser *user;
+    //    Player *player; // TODO find player struct
+    //    int endGameScore;
+    //    const Stats &stats; // TODO find stats struct
+    //    PlayerTrackConfigList *playerTrackConfigList = GetConfigList(*(int *)PORT_THEGAMECONFIG);
+    //    bool autoVox = GetAutoVocals(playerTrackConfigList);
+    //    if (autoVox)
+    //    {
+    //        user = GetNullUser(*(int *)PORT_THEBANDUSERMGR);
+    //        player = GetPlayer(user); // TODO find GetPlayer
+    //        stats = GetStats(player); // TODO find GetStats
+    //        endGameScore = GetEndGameScore(&stats);
+    //        // TODO I assume this would be an object, not just a single score
+    //        node->type = INT_VALUE;
+    //        node->value.intVal = endGameScore;
+    //    }
+    RB3E_MSG("rb3e_get_auto_vocals_stats", NULL);
+    return node;
+}
+
 #ifdef RB3E_XBOX
 // this function is inlined on the Xbox version, so we re-create it
 void DataRegisterFunc(Symbol name, DTAFunction_t func)
@@ -382,5 +451,7 @@ void AddDTAFunctions()
     DataRegisterFunc(globalSymbols.rb3e_get_genre, DTAGetGenre);
     DataRegisterFunc(globalSymbols.rb3e_delete_songcache, DTADeleteSongCache);
     DataRegisterFunc(globalSymbols.rb3e_local_ip, DTALocalIP);
+    DataRegisterFunc(globalSymbols.rb3e_set_auto_vocals_difficulty, DTASetAutoVocalsDifficulty);
+    DataRegisterFunc(globalSymbols.rb3e_get_auto_vocals_stats, DTAGetAutoVocalsStats);
     RB3E_MSG("Added DTA functions!", NULL);
 }
