@@ -370,11 +370,10 @@ DataNode *DTASetAutoVocalsDifficulty(DataNode *node, DataArray *args)
         case INT_VALUE:
             difficulty = (Difficulty)firstArg->value.intVal;
             user = GetNullUser(*(int *)PORT_THEBANDUSERMGR);
+            // This should automatically change the player's difficulty if it is present
             SetDifficulty(user, difficulty);
-            // Normally ChangeDifficulty is called by User.Player.ChangeDifficulty(..),
-            // but if we are setting the difficulty _before_ the band is constructed
-            // there is no player to updated the gameconfig's difficulty for the user
-            ChangeDifficulty(*(int *)PORT_THEGAMECONFIG, user, difficulty);
+            // TODO need to update config if the Band hasn't been constructed yet
+            //  playerTrackConfigList->UpdateConfig(GetUserGuid(), GetTrackType(), GetDifficulty(), -1, false);
             break;
         default:
             RB3E_MSG("Invalid type %i for rb3e_set_auto_vocals_difficulty", firstArg->type);

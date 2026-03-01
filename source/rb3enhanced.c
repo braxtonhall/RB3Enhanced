@@ -374,7 +374,6 @@ void InitialiseFunctions()
     POKE_B(&GetConfigList, PORT_GETCONFIGLIST);
     POKE_B(&GetAutoVocals, PORT_GETAUTOVOCALS);
     POKE_B(&SetDifficulty, PORT_SETDIFFICULTY);
-    POKE_B(&ChangeDifficulty, PORT_SETDIFFICULTY);
 #ifndef RB3E_WII_BANK8
     POKE_B(&HmxFactoryFuncAt, PORT_HMXFACTORYFUNCAT);
     // TODO(Emma): port to bank8

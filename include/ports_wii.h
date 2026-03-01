@@ -79,7 +79,6 @@
 #define PORT_GETNULLUSER 0x800fffec              // BandUserMgr::GetNullUser
 #define PORT_GETBANDUSERS 0x80100558             // BandUserMgr::GetBandUsers
 #define PORT_GETCONFIGLIST 0x800af678            // GameConfig::GetConfigList
-#define PORT_CHANGEDIFFICULTY 0x80118124         // GameConfig::ChangeDifficulty
 #define PORT_GETAUTOVOCALS 0x80473360            // PlayerTrackConfigList::GetAutoVocals
 #define PORT_GETSONGSHORTNAME 0x80224edc         // MetaPerformer::GetSongShortname(?) - actual name not known
 #define PORT_GETMETADATA 0x80515510              // BandSongMgr::Data (function renamed from the original name to avoid any confusion with Data.h)
