@@ -14,6 +14,7 @@
 #include "rb3/SongMetadata.h"
 #include "rb3/BandSongMgr.h"
 #include "rb3/BandUserMgr.h"
+#include "rb3/GameConfig.h"
 #include "rb3enhanced.h"
 #include "net.h"
 #include "version.h"
@@ -355,34 +356,53 @@ DataNode *DTALocalIP(DataNode *node, DataArray *args)
 
 DataNode *DTASetAutoVocalsDifficulty(DataNode *node, DataArray *args)
 {
-    // TODO iff (TheGameConfig->GetConfigList()->GetAutoVocals()) { ... }
-    // https://github.com/DarkRTA/rb3/blob/a51fcae3cfaa4750bc457f9dcec86f6b69bffce3/src/band3/game/GameConfig.cpp#L188
     Difficulty difficulty;
     BandUser *user;
-    DataNode *firstArg = DataNodeEvaluate(&args->mNodes->n[1]);
-    switch (firstArg->type)
+    DataNode *firstArg;
+    PlayerTrackConfigList *playerTrackConfigList = GetConfigList(*(int *)PORT_THEGAMECONFIG);
+    bool autoVox = GetAutoVocals(playerTrackConfigList);
+
+    if (autoVox)
     {
-    case INT_VALUE:
-        difficulty = (Difficulty)firstArg->value.intVal;
-        user = GetNullUser(*(int *)PORT_THEBANDUSERMGR);
-        user->SetDifficulty(difficulty);
-        ChangeDifficulty(*(int *)PORT_THEGAMECONFIG, user, difficulty);
-        break;
-    default:
-        RB3E_MSG("Invalid type %i for rb3e_set_auto_vocals_difficulty", firstArg->type);
-        break;
+        firstArg = DataNodeEvaluate(&args->mNodes->n[1]);
+        switch (firstArg->type)
+        {
+        case INT_VALUE:
+            difficulty = (Difficulty)firstArg->value.intVal;
+            user = GetNullUser(*(int *)PORT_THEBANDUSERMGR);
+            SetDifficulty(user, difficulty);
+            // Normally ChangeDifficulty is called by User.Player.ChangeDifficulty(..),
+            // but if we are setting the difficulty _before_ the band is constructed
+            // there is no player to updated the gameconfig's difficulty for the user
+            ChangeDifficulty(*(int *)PORT_THEGAMECONFIG, user, difficulty);
+            break;
+        default:
+            RB3E_MSG("Invalid type %i for rb3e_set_auto_vocals_difficulty", firstArg->type);
+            break;
+        }
     }
     return node;
 }
 
 DataNode *DTAGetAutoVocalsStats(DataNode *node, DataArray *args)
 {
-    // TODO iff (TheGameConfig->GetConfigList()->GetAutoVocals()) { ... }
-    BandUser *user = GetNullUser(*(int *)PORT_THEBANDUSERMGR);
-    const Stats &stats = user->GetPlayer()->GetStats();
-    // TODO BJH I assume this would be an object, not just a single score
-    node->type = INT_VALUE;
-    node->value.intVal = stats.GetEndGameScore();
+//    BandUser *user;
+//    Player *player; // TODO find player struct
+//    int endGameScore;
+//    const Stats &stats; // TODO find stats struct
+//    PlayerTrackConfigList *playerTrackConfigList = GetConfigList(*(int *)PORT_THEGAMECONFIG);
+//    bool autoVox = GetAutoVocals(playerTrackConfigList);
+//    if (autoVox)
+//    {
+//        user = GetNullUser(*(int *)PORT_THEBANDUSERMGR);
+//        player = GetPlayer(user); // TODO find GetPlayer
+//        stats = GetStats(player); // TODO find GetStats
+//        endGameScore = GetEndGameScore(&stats);
+//        // TODO I assume this would be an object, not just a single score
+//        node->type = INT_VALUE;
+//        node->value.intVal = endGameScore;
+//    }
+    RB3E_MSG("rb3e_get_auto_vocals_stats");
     return node;
 }
 
@@ -417,6 +437,6 @@ void AddDTAFunctions()
     DataRegisterFunc(globalSymbols.rb3e_delete_songcache, DTADeleteSongCache);
     DataRegisterFunc(globalSymbols.rb3e_local_ip, DTALocalIP);
     DataRegisterFunc(globalSymbols.rb3e_set_auto_vocals_difficulty, DTASetAutoVocalsDifficulty);
-    DataRegisterFunc(globalSymbols.rb3e_get_auto_vocals_stats, DTASetAutoVocalsStats);
+    DataRegisterFunc(globalSymbols.rb3e_get_auto_vocals_stats, DTAGetAutoVocalsStats);
     RB3E_MSG("Added DTA functions!", NULL);
 }

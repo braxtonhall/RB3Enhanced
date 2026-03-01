@@ -8,6 +8,7 @@ extern int GetBandUsers(int thisBandUserMgr, int unknown, int unknown2);
 // returns the BandUser in a particular overshell slot (overshell slots are left to right, 0-3, so vocals for example is nearly always going to be 2)
 extern BandUser *GetBandUserFromSlot(int thisBandUserMgr, int slot);
 // returns the NullLocalBandUser, used user in all instruments mode
-extern NullLocalBandUser *GetNullUser(int thisBandUserMgr);
+// TODO do i need to return `NullLocalBandUser` or can I just do this?
+extern BandUser *GetNullUser(int thisBandUserMgr);
 
 #endif // _BANDUSERMGR_H
