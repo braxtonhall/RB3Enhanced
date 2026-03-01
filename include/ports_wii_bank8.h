@@ -49,43 +49,43 @@
 #define PORT_SETSONGANDARTISTNAME 0x80254650    // BandLabel::SetSongAndArtistName
 #define PORT_KEYSONGUITAR 0x8031c1b0            // OvershellPanel::CanGuitarPlayKeys
 // #define PORT_HMXFACTORYFUNCAT 0x8031b2f8         // FIXME HmxObjectFactoryFunc::_at - inlined in bank8?
-#define PORT_WILLBENOSTRUM 0x8062b2d0            // GameGemList::WillBeNoStrum
-#define PORT_ADDGAMEGEM 0x8062b460               // GameGemList::AddGameGem
-#define PORT_SETADDRESS 0x80028d00               // Quazal::InetAddress::SetAddress
-#define PORT_RANDOMINT 0x803fef30                // RandomInt(min, max)
-#define PORT_GETWIDGETBYNAME 0x80135f30          // GemManager::GetWidgetByName
-#define PORT_DATANODEEVALUATE 0x8045e030         // DataNode::Evaluate
-#define PORT_GETSLOTCOLOR 0x801484d0             // TrackConfig::GetSlotColor
-#define PORT_USBWIIGETTYPE 0x809fd840            // UsbWii::GetType
-#define PORT_FILE_EXISTS 0x804207c0              // FileExists
-#define PORT_QUEUEMESSAGE 0x80333140             // PassiveMessagesPanel::QueueMessage
-#define PORT_SETSYSTEMLANGUAGE 0x80443570        // SetSystemLanguage
-#define PORT_ISSUPPORTEDLANGUAGE 0x804434e0      // IsSupportedLanguage
-#define PORT_DATAREADFILE 0x80452ef0             // DataReadFile
-#define PORT_GAME_CT 0x8017d250                  // Game::__ct
-#define PORT_GAME_DT 0x8017dbd0                  // Game::__dt
-#define PORT_GAMEGETACTIVEPLAYER 0x8017fe40      // Game::GetActivePlayer
-#define PORT_WIINETINIT_DNSLOOKUP 0x8043f1c0     // WiiNetInit::StartDNSLookup
+#define PORT_WILLBENOSTRUM 0x8062b2d0        // GameGemList::WillBeNoStrum
+#define PORT_ADDGAMEGEM 0x8062b460           // GameGemList::AddGameGem
+#define PORT_SETADDRESS 0x80028d00           // Quazal::InetAddress::SetAddress
+#define PORT_RANDOMINT 0x803fef30            // RandomInt(min, max)
+#define PORT_GETWIDGETBYNAME 0x80135f30      // GemManager::GetWidgetByName
+#define PORT_DATANODEEVALUATE 0x8045e030     // DataNode::Evaluate
+#define PORT_GETSLOTCOLOR 0x801484d0         // TrackConfig::GetSlotColor
+#define PORT_USBWIIGETTYPE 0x809fd840        // UsbWii::GetType
+#define PORT_FILE_EXISTS 0x804207c0          // FileExists
+#define PORT_QUEUEMESSAGE 0x80333140         // PassiveMessagesPanel::QueueMessage
+#define PORT_SETSYSTEMLANGUAGE 0x80443570    // SetSystemLanguage
+#define PORT_ISSUPPORTEDLANGUAGE 0x804434e0  // IsSupportedLanguage
+#define PORT_DATAREADFILE 0x80452ef0         // DataReadFile
+#define PORT_GAME_CT 0x8017d250              // Game::__ct
+#define PORT_GAME_DT 0x8017dbd0              // Game::__dt
+#define PORT_GAMEGETACTIVEPLAYER 0x8017fe40  // Game::GetActivePlayer
+#define PORT_WIINETINIT_DNSLOOKUP 0x8043f1c0 // WiiNetInit::StartDNSLookup
 // #define PORT_BUILDINSTRUMENTSELECTION 0x802478a8 // FIXME BuildInstrumentSelectionList(?) - actual name not known
 // #define PORT_PREPARESOMEVECTORMAYBE 0x80247c58   // FIXME Prepares some vector, used by BuildInstrumentSelectionList
 // #define PORT_SOMEVECTORPUSHBACKMAYBE 0x802484a8  // FIXME vector<class_Key<class_Vector2>,class_stlpmtx_std::StlNodeAlloc<class_Key<class_Vector2>_>_>::push_back
-#define PORT_POSTPROC_DOPOST 0x809ef2d0          // WiiPostProc::DoPost
-#define PORT_MUSICLIBRARYSELECTMAYBE 0x802ff140  // UNSURE MusicLibrary::TryToSetHighlight, Selects an entry in the Music Library screen - actual name not known
-#define PORT_GETSYMBOLBYGAMEORIGIN 0x80374910    // RecentCmp::RecentTypeToOrigin
-#define PORT_GETGAMEORIGINBYSYMBOL 0x80374870    // RecentCmp::OriginToRecentType
-#define PORT_SONGSORTBYRECENT 0x803747d0         // RecentCmp::__ct
-#define PORT_FILESTREAM_CT 0x80494fd0            // FileStream::__ct (the one that takes a char * path instead of a File object)
-#define PORT_CHUNKSTREAM_CT 0x804929a0           // ChunkStream::__ct
-#define PORT_GETBANDUSERFROMSLOT 0x80168010      // BandUserMgr::GetUserFromSlot
-#define PORT_GETNULLUSER // TODO BJH             // BandUserMgr::GetNullUser
-#define PORT_GETBANDUSERS 0x801683e0             // BandUserMgr::GetBandUsers
-#define PORT_GETSONGSHORTNAME 0x802f5dd0         // MetaPerformer::GetSongSymbol
-#define PORT_GETMETADATA 0x80271de0              // BandSongMgr::Data (function renamed from the original name to avoid any confusion with Data.h)
-#define PORT_GETSONGID 0x8075af40                // DataArray::GetSongID ???, function used when adding songs to BandSongMgr
-#define PORT_SONGMGRGETRANKEDSONGS 0x802726a0    // BandSongMgr::GetRankedSongs(?) - not sure on the real name of the function
-#define PORT_GETSONGIDFROMSHORTNAME 0x80271ad0   // BandSongMgr::GetSongIDFromShortname
-#define PORT_RNDPROPANIMSETFRAME 0x80928020      // RndPropAnim::SetFrame
-#define PORT_DYNAMICCAST 0x80a38f54              // dynamic_cast
+#define PORT_POSTPROC_DOPOST 0x809ef2d0         // WiiPostProc::DoPost
+#define PORT_MUSICLIBRARYSELECTMAYBE 0x802ff140 // UNSURE MusicLibrary::TryToSetHighlight, Selects an entry in the Music Library screen - actual name not known
+#define PORT_GETSYMBOLBYGAMEORIGIN 0x80374910   // RecentCmp::RecentTypeToOrigin
+#define PORT_GETGAMEORIGINBYSYMBOL 0x80374870   // RecentCmp::OriginToRecentType
+#define PORT_SONGSORTBYRECENT 0x803747d0        // RecentCmp::__ct
+#define PORT_FILESTREAM_CT 0x80494fd0           // FileStream::__ct (the one that takes a char * path instead of a File object)
+#define PORT_CHUNKSTREAM_CT 0x804929a0          // ChunkStream::__ct
+#define PORT_GETBANDUSERFROMSLOT 0x80168010     // BandUserMgr::GetUserFromSlot
+#define PORT_GETNULLUSER 0                      // TODO BJH             // BandUserMgr::GetNullUser
+#define PORT_GETBANDUSERS 0x801683e0            // BandUserMgr::GetBandUsers
+#define PORT_GETSONGSHORTNAME 0x802f5dd0        // MetaPerformer::GetSongSymbol
+#define PORT_GETMETADATA 0x80271de0             // BandSongMgr::Data (function renamed from the original name to avoid any confusion with Data.h)
+#define PORT_GETSONGID 0x8075af40               // DataArray::GetSongID ???, function used when adding songs to BandSongMgr
+#define PORT_SONGMGRGETRANKEDSONGS 0x802726a0   // BandSongMgr::GetRankedSongs(?) - not sure on the real name of the function
+#define PORT_GETSONGIDFROMSHORTNAME 0x80271ad0  // BandSongMgr::GetSongIDFromShortname
+#define PORT_RNDPROPANIMSETFRAME 0x80928020     // RndPropAnim::SetFrame
+#define PORT_DYNAMICCAST 0x80a38f54             // dynamic_cast
 // #define PORT_OBJECTFINDUIPANEL 0x80101d74      // FIXME Object::Find<UIPanel> - inlined on bank8?
 #define PORT_JOYPADGETPADDATA 0x8042f6f0       // JoypadGetPadData
 #define PORT_MEMALLOC 0x804a0a70               // MemAlloc
@@ -127,7 +127,7 @@
 #define PORT_THEMETAPERFORMER 0x80c90470    // address of TheMetaPerformer / MetaPerformer::sMetaPerformer
 #define PORT_THEBANDUSERMGR 0x80c8e9b8      // pointer to TheBandUserMgr
 #define PORT_THEGAME 0x80c8eb18             // pointer to TheGame (you lost)
-#define PORT_THEGAMECONFIG // TODO BJH      // pointer to TheGameConfig
+#define PORT_THEGAMECONFIG 0                // TODO BJH    // pointer to TheGameConfig
 #define PORT_OBJECTDIRMAINDIR 0x80cac538    // ObjectDir::sMainDir
 // string pointers
 #define PORT_NASWII_AC_URL 0x80c77fdc

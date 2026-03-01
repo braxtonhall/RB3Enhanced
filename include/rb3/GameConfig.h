@@ -1,9 +1,6 @@
 #ifndef _GAMECONFIG_H
 #define _GAMECONFIG_H
 
-#include "rb3/BandUser.h"
-#include "rb3/PlayerTrackConfigList.h"
-
-extern PlayerTrackConfigList *GetConfigList();
+extern int GetConfigList(int thisGameConfig);
 
 #endif // _GAMECONFIG_H
